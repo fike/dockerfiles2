@@ -1,6 +1,6 @@
-# PostgreSQL 9.4 beta
+# PostgreSQL 9.3
 # 
-# Version 0.1
+# 
 
 FROM ubuntu:14.04
 
@@ -12,7 +12,7 @@ RUN apt-get update -qq
 
 RUN apt-get install wget -qq
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main 9.4" > /etc/apt/sources.list.d/pgdg.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 RUN gpg --keyserver keys.gnupg.net --recv-keys ACCC4CF8
 
@@ -26,7 +26,7 @@ RUN apt-get update
 
 #RUN update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
 
-RUN apt-get install postgresql-9.4 postgresql-client-9.4 postgresql-contrib-9.4 -y
+RUN apt-get install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 -y
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
@@ -36,13 +36,13 @@ USER postgres
 RUN  /etc/init.d/postgresql start &&\
     psql --command "ALTER USER postgres with password 'foobar';"
 
-RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.4/main/pg_hba.conf
+RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 
-RUN echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
 EXPOSE 5432
 
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
-CMD ["/usr/lib/postgresql/9.4/bin/postgres", "-D", "/var/lib/postgresql/9.4/main", "-c", "config_file=/etc/postgresql/9.4/main/postgresql.conf"]
+CMD ["/usr/lib/postgresql/9.3/bin/postgres", "-D", "/var/lib/postgresql/9.3/main", "-c", "config_file=/etc/postgresql/9.3/main/postgresql.conf"]
 
