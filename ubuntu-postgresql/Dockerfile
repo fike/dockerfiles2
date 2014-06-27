@@ -10,14 +10,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -qq
 
-RUN apt-get install wget -qq
-
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-
-RUN gpg --keyserver keys.gnupg.net --recv-keys ACCC4CF8
-
-RUN gpg --export --armor ACCC4CF8|apt-key add -
-
 RUN apt-get update 
 
 # If you use another language, change the package. e.g. language-pack-es
@@ -29,7 +21,6 @@ RUN apt-get update
 RUN apt-get install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 -y
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
-
 
 USER postgres
 
