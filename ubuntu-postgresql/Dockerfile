@@ -16,7 +16,7 @@ RUN apt-get update
 # and run update-locale with language variable.
 #RUN apt-get install language-pack-en -y
 
-#RUN update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
+RUN update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
 
 RUN apt-get install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 -y
 
