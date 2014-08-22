@@ -14,7 +14,7 @@ RUN apt-get update
 
 # If you use another language, change the package. e.g. language-pack-es
 # and run update-locale with language variable.
-#RUN apt-get install language-pack-en -y
+RUN apt-get install language-pack-en -y
 
 RUN update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
 
