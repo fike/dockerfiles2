@@ -24,7 +24,7 @@ RUN mkdir -p /var/run/named /etc/bind/zones
 
 RUN chmod 775 /var/run/named
 
-RUN chown root:bind /var/run/named > /dev/nul 2>&1
+RUN chown root:bind /var/run/named > /dev/null 2>&1
 
 ADD zones.site.master /etc/bind/zones.site.master
 
